@@ -1,0 +1,24 @@
+declare
+
+dno number(4);
+dname varchar2(5);
+ddate date;
+dbasic number(10);
+djob varchar2(15);
+dcomm number(5);
+dept  number(5);
+dmgr  number(5);
+
+begin
+select empno,ename,hiredate,sal,job1,comm,deptno,mgr
+into dno,dname,ddate,dbasic,djob,dcomm,dept,dmgr
+from emp
+where empno=&userno;
+if sql%rowcount>0
+then
+   insert into newempl
+   values(dno,dname,djob,dmgr,ddate,dbasic,dcomm,dept);
+   dbms_output.put_line('records inserted into it');
+   dbms_output.put_line(dno||' '||dname||' '||ddate||' '||dbasic);
+   end if;
+   end;
